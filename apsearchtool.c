@@ -3,12 +3,14 @@
   Douglas Berdeaux
   WeakNetLabs@Gmail.com
   
-  AP Search Tool utilizes RSSI in Radiotap Header.
-  You must set your sepcific offset in the code below before compiling. 
-  This can be found using Wireshark and counting the bytes from the first byte in the packet to the BSSID byte.
-  You must also set your frequency beforehand using something like,
-  iwconfig wlan0mon 11 # for channel 11
-  Compile with root@demon:~# gcc apsearchtool.c -lpcap -o apsearchtool.exe
+  This AP Search Tool utilizes RSSI in the Radiotap Header.
+  * You must set your specific offset in the code below before compiling. 
+      This can be found using Wireshark and counting the bytes from the first byte in the packet to the BSSID byte.
+  * You must also set your frequency beforehand using something like,
+      iwconfig wlan0mon 11 # for channel 11
+  * Compile with: 
+      root@demon:~# gcc apsearchtool.c -lpcap -o apsearchtool.exe
+  
 */
 #include<stdio.h>
 #include<stdlib.h> // for exit();
@@ -63,10 +65,10 @@ void packetHandler(u_char *args,const struct pcap_pkhdr *header,const u_char *pa
 	}
 	ssid[i] = '\0'; // terminate the string
 
-	int offset = 0;
+	//int offset = 0;
 	struct radiotap_header *rtaphdr;
 	rtaphdr = (struct radiotap_header *) packet;
-	offset = rtaphdr->it_len; // 26 bytes on my machine
+	//offset = rtaphdr->it_len; // 26 bytes on my machine
 
 	bssid = packet + 52; // store the BSSID/AP MAC addr, 36 byte offset is transmitter address
 	rssi = packet + 34; // this is hex and this value is subtracted from 256 to get -X dbm.
