@@ -10,7 +10,6 @@
       iwconfig wlan0mon 11 # for channel 11
   * Compile with:
       root@demon:~# gcc apsearchtool.c -lpcap -o apsearchtool.exe
-
 */
 #include<stdio.h>
 #include<stdlib.h> // for exit();
@@ -135,7 +134,7 @@ int main(int argc,char* argv[]){ // This takes arguments from the command line i
 
   struct PcapLoopData pcap_loop_data; // This is the struct of data that we will pass to the pcap_loop() packet handler
 
-	printf("\n %s\xe2\x9a\xa1%s AP Search Tool %s\xe2\x9a\xa1%s\n 2019 - WeakNetLabs%s\n\n",CYAN,BOLD,CYAN,BOLD,RESET);
+	printf("\n %s\xe2\x9a\xa1%s AP Search Tool %s\xe2\x9a\xa1%s\n 2019 - WeakNetLabs%s\n\n",YELLOW,BOLD,YELLOW,BOLD,RESET);
 	if(argc<3){ // not enough arguments:
 		usage();
 	}else{ // we have enough arguments, continue:
